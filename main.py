@@ -1,8 +1,9 @@
 import time
 import datetime
-import multiprocessing
 from colorama import Fore
 from colorama import Style
+print("So you like prime numbers? Name every prime number")
+time.sleep(4)
 times = datetime.datetime.now()
 times = str(times)
 times = times.split()
@@ -15,11 +16,10 @@ originalsec = int(times[2])
 originalsecmin = int(times[1])
 originalsechou = int(times[0])
 totalprime = 0
-file = open("primes.txt", "r")
-lists = file.read()
-file.close()
-x3 = lists.split()
-x1 = int(lists[0])
+primecheck = 0
+x3 = [3]
+print("2\n3")
+x1 = 5
 while True:
     try:
       start = time.time()
@@ -34,14 +34,11 @@ while True:
             #Half check end
       if x2 == 0:
         totalprime = totalprime + 1
-        place = "{:,}".format(totalprime)
-        print(f"Running Since: {Fore.YELLOW}{dates} @ {originalsechou}:{originalsecmin} UTC{Style.RESET_ALL} \|/ Total Prime Numbers Counted: {Fore.YELLOW}{place}{Style.RESET_ALL}")
-        file = open("primes.txt", "r")
-        data = file.read()
-        file.close()
-        file = open("primes.txt", "w")
-        filew = file.write(f"{x1} {data}")
-        file.close()
+        primecheck = primecheck + 1
+        if primecheck == 1:
+          primecheck = 0
+          place = "{:,}".format(totalprime)
+          print(f"Running Since: {Fore.YELLOW}{dates} @ {originalsechou}:{originalsecmin} UTC{Style.RESET_ALL} \|/ Total Prime Numbers Counted: {Fore.YELLOW}{place}{Style.RESET_ALL}")
         end = time.time()
         total = end - start
         total = float(total)
@@ -54,8 +51,11 @@ while True:
         placex = "{:,}".format(x1)
         mila = mila.replace("-", "")
         seconds = total[0]
+        seconds = str(seconds)
+        if "-" in seconds:
+          seconds = 0
         print(f"Time Taken: {Fore.GREEN}{seconds}{Style.RESET_ALL} seconds {Fore.GREEN}{mila}{Style.RESET_ALL} ms       Prime Number: {Fore.GREEN}{placex}{Style.RESET_ALL}\n")
         x3.append(x1)
       x1 = x1 + 2
     except:
-      print(f"{Fore.RED}THERE WAS AN ERROR{Style.RESET_ALL}") 
+      print(f"{Fore.RED}THERE WAS AN ERROR{Style.RESET_ALL} ")
